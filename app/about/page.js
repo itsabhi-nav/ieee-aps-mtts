@@ -6,11 +6,11 @@ export default function AboutPage() {
   return (
     <main className="bg-gray-900 text-gray-300 min-h-screen">
       {/* Hero / Banner */}
-      <section className="relative flex items-center justify-center h-[50vh] bg-gray-800 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-black opacity-50" />
+      <section className="relative flex items-center justify-center h-[60vh] bg-gray-800 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-black opacity-50 animate-pulse-slow" />
         <div className="relative z-10 text-center px-4">
           <motion.h1
-            className="text-4xl md:text-6xl font-bold text-white mb-4"
+            className="text-4xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-xl"
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -29,19 +29,19 @@ export default function AboutPage() {
       </section>
 
       {/* About Society Section */}
-      <section className="py-16 px-4 max-w-5xl mx-auto">
+      <section id="ieee-society" className="py-20 px-4 max-w-5xl mx-auto">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-blue-400 mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          className="text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
           IEEE AP-MTT Society
         </motion.h2>
         <motion.p
           className="mb-6 leading-relaxed"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 1 }}
         >
           IEEE AP-MTT society’s field of interest includes analysis, design,
@@ -57,8 +57,8 @@ export default function AboutPage() {
         </motion.p>
         <motion.p
           className="mb-6 leading-relaxed"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1 }}
         >
           The activities sponsored by the AP-MTT society include a broad
@@ -69,17 +69,18 @@ export default function AboutPage() {
         </motion.p>
 
         <motion.h3
-          className="text-2xl font-semibold text-white mb-4 mt-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          id="bangalore-chapter"
+          className="text-2xl font-semibold text-white mb-4 mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 1 }}
         >
           AP-MTT Bangalore Chapter
         </motion.h3>
         <motion.p
           className="leading-relaxed"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1 }}
         >
           AP-MTT Bangalore chapter is one of the most dynamic and vibrant
@@ -88,22 +89,28 @@ export default function AboutPage() {
           society conducts high-value technology workshops, talks, webinars, and
           seminars in the areas of antennas and microwave engineering.
         </motion.p>
+        <br></br>
+        <p className="leading-relaxed">
+          The society is engaged in organizing high-value conferences such as
+          InCAP, IRSI/IMS, and CONECCT, and is striving to bring top-rated
+          events in the domain of AP-MTT.
+        </p>
       </section>
 
       {/* Message from the Chair Section */}
-      <section className="py-16 px-4 bg-gray-800">
+      <section id="message-from-chair" className="py-20 px-4 bg-gray-800">
         <div className="max-w-5xl mx-auto">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-blue-400 mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            className="text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
             Message from the Chair
           </motion.h2>
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 1 }}
           >
             <p className="mb-4">
@@ -131,7 +138,7 @@ export default function AboutPage() {
               professionals, academicians, and students to grow intellectually
               and professionally.
             </p>
-            <p className="mb-4 leading-relaxed italic text-gray-400">
+            <p className="mb-4 leading-relaxed italic text-gray-400 border-l-4 pl-4 border-cyan-400">
               “You cannot change your future, but you can change your habits,
               and surely your habits will change your future.” — Dr. APJ Abdul
               Kalam
@@ -149,11 +156,6 @@ export default function AboutPage() {
               <strong>Best Regards,</strong> <br />
               Dr. Ashutosh Kedar <br />
               Chair-2025
-            </p>
-            <p className="leading-relaxed">
-              The society is engaged in organizing high-value conferences such
-              as InCAP, IRSI/IMS, and CONECCT, and is striving to bring
-              top-rated events in the domain of AP-MTT.
             </p>
           </motion.div>
         </div>

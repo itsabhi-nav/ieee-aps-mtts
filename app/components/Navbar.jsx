@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, Transition, Disclosure } from "@headlessui/react";
@@ -18,26 +18,48 @@ const navLinksAfterTeam = [
   { href: "/education", label: "Education" },
   { href: "/student-branches", label: "Student Branch Chapters" },
   { href: "/events", label: "Events" },
-  { href: "/ieee-mapcon", label: "IEEE Mapcon" },
+  { href: "https://ieeemapcon.org/", label: "IEEE Mapcon" },
   { href: "/contact", label: "Contact Us" },
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
+
+  // Close menu on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)
+      ) {
+        setMobileOpen(false);
+      }
+    }
+
+    if (mobileOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [mobileOpen]);
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-gray-900 text-white shadow-sm">
-      {/* Navbar container with reduced vertical padding: py-2 */}
-      <div className="flex items-center justify-between px-2 py-2 w-full">
+      <div className="flex items-center justify-between px-1 py-2 w-full">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center ml-[16px]">
           <div className="relative w-[150px] h-17">
             <Image
               src="/logo.png"
               alt="IEEE Logo"
               fill
               style={{ objectFit: "fill" }}
-              className="rounded-md"
+              className=""
             />
           </div>
         </Link>
@@ -59,15 +81,15 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden">
+        <div className="md:hidden pr-4">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-gray-300 hover:text-gray-100 focus:outline-none"
+            className="p-2 border border-gray-600 rounded-md transition-all duration-200 text-gray-200 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
           >
             {mobileOpen ? (
-              <XMarkIcon className="w-6 h-6" />
+              <XMarkIcon className="w-8 h-8" />
             ) : (
-              <Bars3Icon className="w-6 h-6" />
+              <Bars3Icon className="w-8 h-8" />
             )}
           </button>
         </div>
@@ -75,20 +97,24 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {mobileOpen && (
-        <div className="md:hidden bg-gray-800 px-4 py-2 space-y-1 text-base font-medium text-gray-100 shadow-sm">
-          {/* Merge nav links before and after Team */}
-          {[...navLinksBeforeTeam, ...navLinksAfterTeam].map((link) => (
+        <div
+          ref={mobileMenuRef}
+          className="md:hidden bg-gray-800 px-4 py-2 space-y-1 text-base font-medium text-gray-100 shadow-sm"
+        >
+          {/* Show links before Team */}
+          {navLinksBeforeTeam.map((link) => (
             <MobileNavItem
               key={link.href}
               href={link.href}
               label={link.label}
+              onClick={() => setMobileOpen(false)}
             />
           ))}
 
-          {/* Team Disclosure */}
+          {/* Team Disclosure placed right after About Us */}
           <Disclosure>
             {({ open }) => (
-              <>
+              <div>
                 <Disclosure.Button className="flex justify-between w-full py-2 px-3 rounded-lg hover:bg-gray-700 transition-colors">
                   <span>Team</span>
                   <ChevronDownIcon
@@ -98,12 +124,30 @@ export default function Navbar() {
                   />
                 </Disclosure.Button>
                 <Disclosure.Panel className="pl-4 space-y-1">
-                  <MobileNavItem href="/team/2024" label="Team 2024" />
-                  <MobileNavItem href="/team/2025" label="Team 2025" />
+                  <MobileNavItem
+                    href="/team/2024"
+                    label="Team 2024"
+                    onClick={() => setMobileOpen(false)}
+                  />
+                  <MobileNavItem
+                    href="/team/2025"
+                    label="Team 2025"
+                    onClick={() => setMobileOpen(false)}
+                  />
                 </Disclosure.Panel>
-              </>
+              </div>
             )}
           </Disclosure>
+
+          {/* Remaining links */}
+          {navLinksAfterTeam.map((link) => (
+            <MobileNavItem
+              key={link.href}
+              href={link.href}
+              label={link.label}
+              onClick={() => setMobileOpen(false)}
+            />
+          ))}
         </div>
       )}
     </nav>
@@ -123,10 +167,11 @@ function NavLink({ href, label, extraClass = "" }) {
 }
 
 // Mobile NavLink Component
-function MobileNavItem({ href, label }) {
+function MobileNavItem({ href, label, onClick }) {
   return (
     <Link
       href={href}
+      onClick={onClick}
       className="block py-2 px-3 rounded-lg hover:bg-gray-700 transition-colors"
     >
       {label}

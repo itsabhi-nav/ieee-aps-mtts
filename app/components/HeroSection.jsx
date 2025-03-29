@@ -34,7 +34,7 @@ export default function HeroSection() {
         >
           <div>Welcome to</div>
           <div className="text-blue-400">IEEE Bangalore Section</div>
-          <div className="text-purple-400">APS-MTT Joint Chapter</div>
+          <div className="text-purple-400">APS-MTTS Joint Chapter</div>
         </motion.h1>
 
         <motion.p

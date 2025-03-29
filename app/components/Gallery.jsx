@@ -107,8 +107,8 @@ export default function GalleryCarousel() {
               src={imageData[current].src}
               alt={imageData[current].alt}
               onLoad={() => setImageLoaded(true)}
-              className={`w-full h-full object-cover rounded-2xl transition-opacity duration-700 ${
-                imageLoaded ? "opacity-100" : "opacity-0"
+              className={`w-full h-full object-cover rounded-2xl transition-all duration-700 ${
+                imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
               }`}
             />
             <div className="absolute bottom-0 left-0 right-0 text-center py-2 bg-black/40 text-white text-lg font-medium tracking-wide backdrop-blur-md">
@@ -130,21 +130,34 @@ export default function GalleryCarousel() {
         >
           <ChevronRightIcon className="w-6 h-6" />
         </button>
+
+        {/* Indicator Dots */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {imageData.map((_, index) => (
+            <span
+              key={index}
+              className={`w-3 h-3 rounded-full transition ${
+                index === current ? "bg-cyan-400" : "bg-white/30"
+              }`}
+            ></span>
+          ))}
+        </div>
       </div>
 
       {/* Lightbox */}
       {selectedIndex !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
           onClick={closeLightbox}
         >
           <div
-            className="relative max-w-5xl w-full mx-4"
+            className="relative max-w-5xl w-full mx-4 rounded-xl border border-white/10 shadow-[0_0_40px_rgba(0,255,255,0.2)] bg-black/80 p-4"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={closeLightbox}
               className="absolute top-4 right-4 text-white z-10 hover:text-red-400"
+              title="Press Esc to close"
             >
               <XMarkIcon className="w-7 h-7" />
             </button>
@@ -166,7 +179,7 @@ export default function GalleryCarousel() {
             <img
               src={imageData[selectedIndex].src}
               alt={imageData[selectedIndex].alt}
-              className="w-full max-h-[80vh] object-contain rounded-xl shadow-xl"
+              className="w-full max-h-[80vh] object-contain rounded-xl shadow-xl transition duration-500"
             />
             <div className="text-center text-white mt-4 text-xl font-semibold">
               {imageData[selectedIndex].title}

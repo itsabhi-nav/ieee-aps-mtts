@@ -20,12 +20,13 @@ export default function Footer() {
 
   const links = {
     "Quick Links": [
-      { label: "Home", href: "/" },
       { label: "About Us", href: "/about" },
       { label: "Team", href: "/team" },
+      { label: "Education", href: "/education" },
+      { label: "Student Branch Chapters", href: "/student-branches" },
       { label: "Events", href: "/events" },
+      { label: "IEEE Mapcon", href: "/mapcon" },
       { label: "Contact Us", href: "/contact" },
-      { label: "Support", href: "/support" },
     ],
     "IEEE Resources": [
       "Connect with IEEE",
@@ -60,6 +61,8 @@ export default function Footer() {
           <h3 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text relative inline-block after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-cyan-500">
             About the Society
           </h3>
+          {/* Added logo image */}
+          <img src="/logo.png" alt="Society Logo" className="w-32 mt-4" />
           <p className="text-sm text-gray-300 leading-relaxed hover:text-gray-100 transition-colors duration-300">
             IEEE AP-MTT Society advances RF, microwave, and antenna technologies
             across mobile, satellite, and wireless networks. We host premium
