@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,15 +60,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className} bg-gradient-to-r from-gray-900 to-gray-800 text-white`}
-      >
-        <Navbar />
-        <div className="pt-18">{children}</div>
-        <ScrollToTop />
-        <Footer />
-      </body>
-    </html>
+    <>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#0f172a" />
+      </Head>
+      <html lang="en">
+        <body
+          className={`${inter.className} bg-gradient-to-r from-gray-900 to-gray-800 text-white`}
+        >
+          <Navbar />
+          <div className="pt-18">{children}</div>
+          <ScrollToTop />
+          <Footer />
+        </body>
+      </html>
+    </>
   );
 }
