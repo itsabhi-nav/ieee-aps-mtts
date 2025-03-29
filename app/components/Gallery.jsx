@@ -92,14 +92,12 @@ export default function GalleryCarousel() {
   }, [handleKeyDown]);
 
   return (
-    // Matching Testimonials background color
-    <section className="relative bg-gray-900 py-10">
-      <h2 className="text-4xl text-center font-bold text-white mb-6">
+    <section className="relative bg-gradient-to-b from-black via-gray-900 to-black py-14">
+      <h2 className="text-4xl text-center font-extrabold text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text mb-10 drop-shadow-lg">
         Gallery
       </h2>
 
-      {/* Slideshow */}
-      <div className="relative w-full max-w-5xl mx-auto overflow-hidden rounded-xl">
+      <div className="relative w-full max-w-5xl mx-auto overflow-hidden rounded-2xl shadow-lg">
         <AnimatePresence mode="wait">
           <motion.div
             key={imageData[current].id}
@@ -110,31 +108,32 @@ export default function GalleryCarousel() {
             className="w-full relative cursor-pointer"
             onClick={() => openLightbox(current)}
           >
-            {/* Slideshow Image */}
-            <div className="w-full h-[400px] bg-gray-700 rounded-xl overflow-hidden">
+            <div className="w-full h-[400px] bg-gray-700 rounded-2xl overflow-hidden group">
               <img
                 src={imageData[current].src}
                 alt={imageData[current].alt}
                 onLoad={() => setImageLoaded(true)}
-                className={`w-full h-full object-cover rounded-xl transition-opacity duration-700 ${
+                className={`w-full h-full object-cover rounded-2xl transition-opacity duration-700 ${
                   imageLoaded ? "opacity-100" : "opacity-0"
                 }`}
               />
+              <div className="absolute bottom-0 left-0 right-0 text-center py-2 bg-black/40 text-white text-lg font-medium tracking-wide backdrop-blur-md">
+                {imageData[current].title}
+              </div>
             </div>
-            {/* Title displayed below the image */}
           </motion.div>
         </AnimatePresence>
 
         {/* Navigation buttons */}
         <button
           onClick={prevSlide}
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-900 text-white p-2 rounded-full hover:bg-gray-600 z-10"
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-cyan-600/60 transition z-10 backdrop-blur"
         >
           <ChevronLeftIcon className="w-6 h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-900 text-white p-2 rounded-full hover:bg-gray-600 z-10"
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-cyan-600/60 transition z-10 backdrop-blur"
         >
           <ChevronRightIcon className="w-6 h-6" />
         </button>
@@ -144,7 +143,7 @@ export default function GalleryCarousel() {
       <AnimatePresence>
         {selectedIndex !== null && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -152,28 +151,28 @@ export default function GalleryCarousel() {
           >
             <motion.div
               className="relative max-w-5xl w-full mx-4"
-              initial={{ scale: 0.8 }}
+              initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
+              exit={{ scale: 0.9 }}
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={closeLightbox}
-                className="absolute top-4 right-4 text-white focus:outline-none z-10"
+                className="absolute top-4 right-4 text-white z-10 hover:text-red-400"
               >
                 <XMarkIcon className="w-7 h-7" />
               </button>
 
               <button
                 onClick={showPrev}
-                className="absolute top-1/2 left-4 text-white transform -translate-y-1/2 focus:outline-none z-10"
+                className="absolute top-1/2 left-4 text-white transform -translate-y-1/2 hover:text-cyan-400 z-10"
               >
                 <ChevronLeftIcon className="w-10 h-10" />
               </button>
 
               <button
                 onClick={showNext}
-                className="absolute top-1/2 right-4 text-white transform -translate-y-1/2 focus:outline-none z-10"
+                className="absolute top-1/2 right-4 text-white transform -translate-y-1/2 hover:text-cyan-400 z-10"
               >
                 <ChevronRightIcon className="w-10 h-10" />
               </button>
@@ -181,7 +180,7 @@ export default function GalleryCarousel() {
               <img
                 src={imageData[selectedIndex].src}
                 alt={imageData[selectedIndex].alt}
-                className="w-full max-h-[80vh] object-contain rounded-lg"
+                className="w-full max-h-[80vh] object-contain rounded-xl shadow-xl"
               />
               <div className="text-center text-white mt-4 text-xl font-semibold">
                 {imageData[selectedIndex].title}

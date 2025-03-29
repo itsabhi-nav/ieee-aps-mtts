@@ -7,17 +7,23 @@ export default function AboutSociety() {
     <section className="py-16 bg-gray-700 text-gray-300">
       <div className="max-w-5xl mx-auto px-4">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-blue-400 mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          className="text-3xl md:text-4xl font-bold text-blue-400 mb-8 relative inline-block"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
           IEEE AP-MTT Society
+          <motion.span
+            className="absolute left-0 -bottom-1 h-1 w-full bg-gradient-to-r from-cyan-400 to-purple-500 rounded"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
         </motion.h2>
         <motion.p
           className="mb-6 leading-relaxed"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 1 }}
         >
           IEEE AP-MTT society’s field of interest includes analysis, design,
@@ -33,8 +39,8 @@ export default function AboutSociety() {
         </motion.p>
         <motion.p
           className="mb-6 leading-relaxed"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1 }}
         >
           The activities sponsored by the AP-MTT society include a broad
@@ -44,17 +50,23 @@ export default function AboutSociety() {
           microwave engineering, and technology.
         </motion.p>
         <motion.h3
-          className="text-2xl font-semibold text-white mb-4 mt-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          className="text-2xl font-semibold text-white mb-4 mt-8 relative inline-block"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 1 }}
         >
           AP-MTT Bangalore Chapter
+          <motion.span
+            className="absolute left-0 -bottom-1 h-1 w-full bg-gradient-to-r from-cyan-400 to-purple-500 rounded"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+          />
         </motion.h3>
         <motion.p
           className="leading-relaxed"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1 }}
         >
           AP-MTT Bangalore chapter is one of the most dynamic and vibrant

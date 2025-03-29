@@ -28,30 +28,41 @@ const posts = [
 
 export default function Blog() {
   return (
-    <section className="py-16 bg-gray-800">
+    <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black text-white">
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2
-          className="text-4xl font-bold text-center mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          className="text-4xl font-extrabold text-center mb-14 bg-gradient-to-r from-cyan-400 to-purple-500 text-transparent bg-clip-text drop-shadow-lg"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
         >
           Latest from Our Blog
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {posts.map((post, index) => (
             <motion.div
               key={post.id}
-              className="p-6 bg-white/10 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-blue-500/50 transition transform hover:-translate-y-1"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
+              className="relative group rounded-xl p-[1px]"
             >
-              <h3 className="text-2xl font-semibold text-blue-400 mb-2">
-                {post.title}
-              </h3>
-              <p className="text-gray-400 text-sm mb-4">{post.date}</p>
-              <p className="text-gray-300">{post.summary}</p>
+              {/* Softer glow */}
+              <div className="absolute -inset-px z-0 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 opacity-0 group-hover:opacity-30 blur-sm transition duration-500 pointer-events-none"></div>
+
+              {/* Card content */}
+              <div className="relative z-10 bg-white/5 backdrop-blur-md rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group-hover:bg-white/5">
+                <h3 className="text-2xl font-semibold text-cyan-400 group-hover:text-white transition">
+                  {post.title}
+                </h3>
+                <p className="text-gray-400 text-xs mt-1 mb-4 tracking-wide uppercase">
+                  {post.date}
+                </p>
+                <p className="text-gray-300 leading-relaxed text-sm">
+                  {post.summary}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
