@@ -45,7 +45,11 @@ export default function Events() {
                 duration: 0.8,
                 ease: "easeOut",
               }}
-              whileHover={{ scale: 1.05, rotateX: 3, rotateY: 3 }}
+              whileHover={{
+                scale: 1.05,
+                rotateX: "3deg",
+                rotateY: "3deg",
+              }}
             >
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-2 text-blue-400">

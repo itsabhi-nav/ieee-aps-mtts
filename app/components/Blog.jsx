@@ -28,41 +28,72 @@ const posts = [
 
 export default function Blog() {
   return (
-    <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black text-white">
+    <section className="py-20 bg-gradient-to-br from-gray-900 to-black">
       <div className="max-w-7xl mx-auto px-4">
-        <motion.h2
-          className="text-4xl font-extrabold text-center mb-14 bg-gradient-to-r from-cyan-400 to-purple-500 text-transparent bg-clip-text drop-shadow-lg"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-        >
+        <h2 className="text-4xl text-center font-extrabold text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text mb-10 drop-shadow-lg">
           Latest from Our Blog
-        </motion.h2>
+        </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {posts.map((post, index) => (
             <motion.div
               key={post.id}
-              initial={{ opacity: 0, y: 30 }}
+              className="relative overflow-hidden rounded-xl shadow-2xl bg-white/10 backdrop-blur-sm p-6 transition-all"
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
-              className="relative group rounded-xl p-[1px]"
+              transition={{
+                delay: index * 0.2,
+                duration: 0.8,
+                ease: "easeOut",
+              }}
+              whileHover={{
+                scale: 1.05,
+                rotateX: "3deg",
+                rotateY: "3deg",
+              }}
             >
-              {/* Softer glow */}
-              <div className="absolute -inset-px z-0 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 opacity-0 group-hover:opacity-30 blur-sm transition duration-500 pointer-events-none"></div>
-
-              {/* Card content */}
-              <div className="relative z-10 bg-white/5 backdrop-blur-md rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group-hover:bg-white/5">
-                <h3 className="text-2xl font-semibold text-cyan-400 group-hover:text-white transition">
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold mb-2 text-blue-400">
                   {post.title}
                 </h3>
-                <p className="text-gray-400 text-xs mt-1 mb-4 tracking-wide uppercase">
-                  {post.date}
-                </p>
-                <p className="text-gray-300 leading-relaxed text-sm">
-                  {post.summary}
-                </p>
+                <p className="text-lg text-gray-400 mb-3">{post.date}</p>
+                <p className="text-gray-300">{post.summary}</p>
+                <motion.a
+                  href="#"
+                  className="mt-6 inline-flex items-center text-blue-400 font-medium"
+                  whileHover={{ x: 8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Read More
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="ml-2 w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </motion.a>
               </div>
+
+              {/* Decorative animated border overlay */}
+              <motion.div
+                className="absolute inset-0 border-2 border-transparent rounded-xl pointer-events-none"
+                animate={{
+                  borderColor: [
+                    "rgba(255,255,255,0)",
+                    "rgba(255,255,255,0.3)",
+                    "rgba(255,255,255,0)",
+                  ],
+                }}
+                transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+              />
             </motion.div>
           ))}
         </div>

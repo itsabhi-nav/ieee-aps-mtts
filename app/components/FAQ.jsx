@@ -2,7 +2,7 @@
 import React from "react";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
@@ -31,6 +31,7 @@ export default function FAQ() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.8 }}
         >
           Frequently Asked Questions
         </motion.h2>
@@ -44,6 +45,7 @@ export default function FAQ() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   className="relative rounded-xl group"
+                  viewport={{ once: true, amount: 0.8 }}
                 >
                   {/* Glowing border (underneath the content) */}
                   <div className="absolute -inset-px rounded-xl z-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 opacity-0 group-hover:opacity-60 blur-[4px] transition-opacity duration-500 pointer-events-none"></div>
@@ -59,9 +61,23 @@ export default function FAQ() {
                       />
                     </Disclosure.Button>
 
-                    <Disclosure.Panel className="pt-4 text-gray-300 text-sm md:text-base leading-relaxed">
-                      {faq.answer}
-                    </Disclosure.Panel>
+                    {/* Animate the panel expansion */}
+                    <AnimatePresence initial={false}>
+                      {open && (
+                        <motion.div
+                          key="content"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <Disclosure.Panel className="pt-4 text-gray-300 text-sm md:text-base leading-relaxed">
+                            {faq.answer}
+                          </Disclosure.Panel>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </motion.div>
               )}

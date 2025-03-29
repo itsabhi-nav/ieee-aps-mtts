@@ -20,9 +20,10 @@ export default function RootLayout({ children }) {
       >
         <Navbar />
         {/* <ProgressBar /> */}
-        {/* Add top padding to ensure content starts below the fixed navbar */}
 
-        {children}
+        {/* Add top padding to ensure content starts below the fixed navbar */}
+        <div className="pt-18">{children}</div>
+
         <ScrollToTop />
         <Footer />
       </body>

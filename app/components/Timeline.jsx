@@ -64,19 +64,22 @@ export default function Timeline() {
                   <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-pink-500 rounded-full shadow-xl shadow-blue-500/30 border-2 border-white" />
                 </div>
 
-                {/* Card with a subtle gradient and tilt on hover */}
-                <motion.div
-                  whileHover={{ rotate: 1.5 }}
-                  transition={{ duration: 0.2 }}
-                  className="relative bg-[linear-gradient(to_bottom_right,rgba(255,255,255,0.05),rgba(255,255,255,0.01))] border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg shadow-pink-500/10 max-w-md transform transition-all hover:shadow-blue-500/20"
-                >
-                  <p className="text-blue-400 font-semibold text-lg">
-                    {milestone.year}
-                  </p>
-                  <p className="text-gray-300 mt-2 text-base leading-relaxed tracking-wide">
-                    {milestone.event}
-                  </p>
-                </motion.div>
+                {/* Wrap the card in a container with perspective */}
+                <div style={{ perspective: 1000 }}>
+                  {/* Card with a subtle gradient and tilt on hover */}
+                  <motion.div
+                    whileHover={{ rotate: "1.5deg" }}
+                    transition={{ duration: 0.2 }}
+                    className="relative bg-[linear-gradient(to_bottom_right,rgba(255,255,255,0.05),rgba(255,255,255,0.01))] border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg shadow-pink-500/10 max-w-md transform transition-all hover:shadow-blue-500/20"
+                  >
+                    <p className="text-blue-400 font-semibold text-lg">
+                      {milestone.year}
+                    </p>
+                    <p className="text-gray-300 mt-2 text-base leading-relaxed tracking-wide">
+                      {milestone.event}
+                    </p>
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </div>

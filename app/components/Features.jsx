@@ -30,41 +30,77 @@ export default function Features() {
   ];
 
   return (
-    <section className="py-16 bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        <motion.h2
-          className="text-4xl font-bold mb-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
+    <section className="py-20 bg-gradient-to-br from-gray-900 to-black">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-4xl text-center font-extrabold text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text mb-10 drop-shadow-lg">
           Why Join IEEE APS-MTT?
-        </motion.h2>
-        <motion.p
-          className="text-gray-400 mb-12 max-w-2xl mx-auto"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 1 }}
-        >
-          Discover the benefits of being part of the Antennas and Propagation &
-          Microwave Theory and Techniques communities.
-        </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.name}
-              className="p-8 bg-white/10 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-blue-500/50 transition transform hover:-translate-y-1"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
-            >
-              <feature.icon className="w-12 h-12 mx-auto text-blue-400 mb-4" />
-              <h3 className="text-2xl font-semibold mb-2 text-white">
-                {feature.name}
-              </h3>
-              <p className="text-gray-300">{feature.description}</p>
-            </motion.div>
-          ))}
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
+                key={feature.name}
+                className="relative overflow-hidden rounded-xl shadow-2xl bg-white/10 backdrop-blur-sm p-6 transition-all"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: index * 0.2,
+                  duration: 0.8,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  rotateX: "3deg",
+                  rotateY: "3deg",
+                }}
+              >
+                <div className="relative z-10 text-left">
+                  <Icon className="w-14 h-14 mb-4 text-blue-400" />
+                  <h3 className="text-2xl font-bold mb-2 text-blue-400">
+                    {feature.name}
+                  </h3>
+                  <p className="text-gray-300">{feature.description}</p>
+                  <motion.a
+                    href="#"
+                    className="mt-6 inline-flex items-center text-blue-400 font-medium"
+                    whileHover={{ x: 8 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    Learn More
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="ml-2 w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </motion.a>
+                </div>
+
+                {/* Decorative animated border overlay */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-transparent rounded-xl pointer-events-none"
+                  animate={{
+                    borderColor: [
+                      "rgba(255,255,255,0)",
+                      "rgba(255,255,255,0.3)",
+                      "rgba(255,255,255,0)",
+                    ],
+                  }}
+                  transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

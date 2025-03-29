@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   XMarkIcon,
   ChevronLeftIcon,
@@ -98,31 +97,25 @@ export default function GalleryCarousel() {
       </h2>
 
       <div className="relative w-full max-w-5xl mx-auto overflow-hidden rounded-2xl shadow-lg">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={imageData[current].id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: imageLoaded ? 1 : 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="w-full relative cursor-pointer"
-            onClick={() => openLightbox(current)}
-          >
-            <div className="w-full h-[400px] bg-gray-700 rounded-2xl overflow-hidden group">
-              <img
-                src={imageData[current].src}
-                alt={imageData[current].alt}
-                onLoad={() => setImageLoaded(true)}
-                className={`w-full h-full object-cover rounded-2xl transition-opacity duration-700 ${
-                  imageLoaded ? "opacity-100" : "opacity-0"
-                }`}
-              />
-              <div className="absolute bottom-0 left-0 right-0 text-center py-2 bg-black/40 text-white text-lg font-medium tracking-wide backdrop-blur-md">
-                {imageData[current].title}
-              </div>
+        <div
+          key={imageData[current].id}
+          className="w-full relative cursor-pointer"
+          onClick={() => openLightbox(current)}
+        >
+          <div className="w-full h-[400px] bg-gray-700 rounded-2xl overflow-hidden group">
+            <img
+              src={imageData[current].src}
+              alt={imageData[current].alt}
+              onLoad={() => setImageLoaded(true)}
+              className={`w-full h-full object-cover rounded-2xl transition-opacity duration-700 ${
+                imageLoaded ? "opacity-100" : "opacity-0"
+              }`}
+            />
+            <div className="absolute bottom-0 left-0 right-0 text-center py-2 bg-black/40 text-white text-lg font-medium tracking-wide backdrop-blur-md">
+              {imageData[current].title}
             </div>
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        </div>
 
         {/* Navigation buttons */}
         <button
@@ -140,55 +133,47 @@ export default function GalleryCarousel() {
       </div>
 
       {/* Lightbox */}
-      <AnimatePresence>
-        {selectedIndex !== null && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeLightbox}
+      {selectedIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur"
+          onClick={closeLightbox}
+        >
+          <div
+            className="relative max-w-5xl w-full mx-4"
+            onClick={(e) => e.stopPropagation()}
           >
-            <motion.div
-              className="relative max-w-5xl w-full mx-4"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              onClick={(e) => e.stopPropagation()}
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 text-white z-10 hover:text-red-400"
             >
-              <button
-                onClick={closeLightbox}
-                className="absolute top-4 right-4 text-white z-10 hover:text-red-400"
-              >
-                <XMarkIcon className="w-7 h-7" />
-              </button>
+              <XMarkIcon className="w-7 h-7" />
+            </button>
 
-              <button
-                onClick={showPrev}
-                className="absolute top-1/2 left-4 text-white transform -translate-y-1/2 hover:text-cyan-400 z-10"
-              >
-                <ChevronLeftIcon className="w-10 h-10" />
-              </button>
+            <button
+              onClick={showPrev}
+              className="absolute top-1/2 left-4 text-white transform -translate-y-1/2 hover:text-cyan-400 z-10"
+            >
+              <ChevronLeftIcon className="w-10 h-10" />
+            </button>
 
-              <button
-                onClick={showNext}
-                className="absolute top-1/2 right-4 text-white transform -translate-y-1/2 hover:text-cyan-400 z-10"
-              >
-                <ChevronRightIcon className="w-10 h-10" />
-              </button>
+            <button
+              onClick={showNext}
+              className="absolute top-1/2 right-4 text-white transform -translate-y-1/2 hover:text-cyan-400 z-10"
+            >
+              <ChevronRightIcon className="w-10 h-10" />
+            </button>
 
-              <img
-                src={imageData[selectedIndex].src}
-                alt={imageData[selectedIndex].alt}
-                className="w-full max-h-[80vh] object-contain rounded-xl shadow-xl"
-              />
-              <div className="text-center text-white mt-4 text-xl font-semibold">
-                {imageData[selectedIndex].title}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <img
+              src={imageData[selectedIndex].src}
+              alt={imageData[selectedIndex].alt}
+              className="w-full max-h-[80vh] object-contain rounded-xl shadow-xl"
+            />
+            <div className="text-center text-white mt-4 text-xl font-semibold">
+              {imageData[selectedIndex].title}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
