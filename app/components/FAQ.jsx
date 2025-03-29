@@ -24,37 +24,45 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section className="py-16 bg-gray-800">
+    <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black text-white">
       <div className="max-w-4xl mx-auto px-4">
         <motion.h2
-          className="text-4xl font-bold text-center mb-8 text-blue-400"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          className="text-4xl font-extrabold text-center mb-14 bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-transparent bg-clip-text drop-shadow-lg"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
         >
           Frequently Asked Questions
         </motion.h2>
-        <div className="space-y-4">
+
+        <div className="space-y-6">
           {faqs.map((faq, index) => (
             <Disclosure key={index}>
               {({ open }) => (
                 <motion.div
-                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
+                  className="relative rounded-xl group"
                 >
-                  <Disclosure.Button className="flex justify-between w-full text-left text-white font-medium">
-                    <span>{faq.question}</span>
-                    <ChevronUpIcon
-                      className={`${
-                        open ? "transform rotate-180" : ""
-                      } w-5 h-5 text-blue-400`}
-                    />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="mt-2 text-gray-300">
-                    {faq.answer}
-                  </Disclosure.Panel>
+                  {/* Glowing border (underneath the content) */}
+                  <div className="absolute -inset-px rounded-xl z-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 opacity-0 group-hover:opacity-60 blur-[4px] transition-opacity duration-500 pointer-events-none"></div>
+
+                  {/* Actual content card */}
+                  <div className="relative z-10 bg-white/5 backdrop-blur-lg rounded-xl p-5 transition duration-300 hover:bg-white/5">
+                    <Disclosure.Button className="flex justify-between items-center w-full text-left font-semibold text-lg md:text-xl tracking-wide text-white hover:text-cyan-300 transition">
+                      <span>{faq.question}</span>
+                      <ChevronUpIcon
+                        className={`w-6 h-6 text-cyan-400 transform transition-transform duration-300 ${
+                          open ? "rotate-180" : ""
+                        }`}
+                      />
+                    </Disclosure.Button>
+
+                    <Disclosure.Panel className="pt-4 text-gray-300 text-sm md:text-base leading-relaxed">
+                      {faq.answer}
+                    </Disclosure.Panel>
+                  </div>
                 </motion.div>
               )}
             </Disclosure>
