@@ -6,7 +6,16 @@ export default function AboutPage() {
   return (
     <main className="bg-gray-900 text-gray-300 min-h-screen">
       {/* Hero / Banner */}
-      <section className="relative flex items-center justify-center h-[60vh] bg-gray-800 overflow-hidden">
+      <section className="relative flex items-center justify-center h-[60vh] overflow-hidden">
+        <div className="absolute inset-0">
+          <video className="w-full h-full object-cover" autoPlay loop muted>
+            <source
+              src="https://res.cloudinary.com/dcahaaigp/video/upload/f_auto:video,q_auto/bi3uwoy63vnqq2vj1dbv"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-black opacity-50 animate-pulse-slow" />
         <div className="relative z-10 text-center px-4">
           <motion.h1
@@ -15,7 +24,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            About IEEE APS-MTT
+            About IEEE APS-MTTS
           </motion.h1>
           <motion.p
             className="text-lg md:text-xl text-gray-300"
@@ -36,7 +45,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          IEEE AP-MTT Society
+          IEEE AP-MTTS Society
         </motion.h2>
         <motion.p
           className="mb-6 leading-relaxed"
@@ -44,7 +53,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 1 }}
         >
-          IEEE AP-MTT society’s field of interest includes analysis, design,
+          IEEE AP-MTTS society’s field of interest includes analysis, design,
           development, measurement, and testing; radiation, radio propagation,
           and the interaction of electromagnetic waves with discrete and
           continuous media; and applications and systems pertinent to antennas,
@@ -61,7 +70,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1 }}
         >
-          The activities sponsored by the AP-MTT society include a broad
+          The activities sponsored by the AP-MTTS society include a broad
           spectrum of conferences, workshops, tutorials, technical committees,
           chapter meetings, publications, professional education programs, and
           local activities that foster original work in all aspects of antennas,
@@ -75,7 +84,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 1 }}
         >
-          AP-MTT Bangalore Chapter
+          AP-MTTS Bangalore Chapter
         </motion.h3>
         <motion.p
           className="leading-relaxed"
@@ -83,7 +92,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1 }}
         >
-          AP-MTT Bangalore chapter is one of the most dynamic and vibrant
+          AP-MTTS Bangalore chapter is one of the most dynamic and vibrant
           chapters in India and Region 10. With over 80 AP-MTT professional
           members from industry and academia, and around 20 student members, the
           society conducts high-value technology workshops, talks, webinars, and
@@ -93,7 +102,7 @@ export default function AboutPage() {
         <p className="leading-relaxed">
           The society is engaged in organizing high-value conferences such as
           InCAP, IRSI/IMS, and CONECCT, and is striving to bring top-rated
-          events in the domain of AP-MTT.
+          events in the domain of AP-MTTS.
         </p>
       </section>
 
@@ -128,7 +137,7 @@ export default function AboutPage() {
               tactics, etc.
             </p>
             <p className="mb-4 leading-relaxed">
-              IEEE AP/MTT Jt. Chapter, Bangalore has been continuously involved
+              IEEE AP/MTTS Jt. Chapter, Bangalore has been continuously involved
               in spreading the knowledge to every person in the society and
               working on their professional upliftment. The chapter has
               witnessed great volunteers in the past and is evolving with more
